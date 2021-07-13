@@ -4,6 +4,9 @@ import Box from '../src/components/Box'
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AlurakutCommons';
 import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations';
 
+
+const fixedUser = 'Gabriel9Stresser';
+
 function ProfileSidebar(propriedades) {
   return (
     <Box as="aside">
@@ -22,8 +25,8 @@ function ProfileSidebar(propriedades) {
   )
 }
 
-export default function Home() {
-  const usuarioAleatorio = 'omariosouto';
+export default function Home(props) {
+  const usuarioAleatorio = 'gabriel9stresser';
   const [comunidades, setComunidades] = React.useState([{
     id: '12802378123789378912789789123896123', 
     title: 'Eu odeio acordar cedo',
@@ -34,14 +37,13 @@ export default function Home() {
 
   console.log('Nosso teste', );
   // const comunidades = ['Alurakut'];
-  const pessoasFavoritas = [
-    'juunegreiros',
-    'omariosouto',
-    'peas',
-    'rafaballerini',
-    'marcobrunodev',
-    'felipefialho',
-  ]
+  const lista = props.followers;
+  const name = props.userData.name;
+  const pessoasFavoritas = [];
+
+  lista.map((seguidor) => {
+    pessoasFavoritas.push(seguidor.login)
+  });
 
   return (
     <>
@@ -139,4 +141,22 @@ export default function Home() {
       </MainGrid>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const followers = await fetch(`https://api.github.com/users/${fixedUser}/followers`)
+      .then((resposta) => {
+        return resposta.json();
+      })
+  const userData = await fetch(`https://api.github.com/users/${fixedUser}`)
+      .then((resposta) => {
+        return resposta.json();
+      })
+
+  return {
+    props: {
+      followers: followers,
+      userData: userData
+    },
+  }
 }
