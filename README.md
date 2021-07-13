@@ -19,4 +19,4 @@ Seja bem vindo ao projeto base do Alurakut !!! Passos fundamentais:
 # Desafios feitos!
 - Renderizar os seguidores do Github no campo de amigos
 
-[![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg?style=flat-square)](https://github.com/alura-challenges/alurakut-base/blob/master/LICENSE)
+[![licence mit](https://img.shields.io/badge/licence-MIT-blue.svg?style=flat-square)](https://github.com/Gabriel9Stresser/Alurakut/blob/master/LICENSE)
